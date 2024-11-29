@@ -1,11 +1,13 @@
 package Control.Monsters;
 
-import Control.Objects.Object;
-import Control.Objects.ObjectType;
+import Control.Objects.GameObject;
+import Control.Objects.ObjectManager;
+
 
 public class Monster_Skeleton extends MonsterCombatTemplate{
     private MonsterStats monsterStats = new MonsterStats(MonsterType.Skeleton, 1, "Withered Skeleton");
-    private Object weapon = new Object(ObjectType.Weapon, 1, false);
+    private ObjectManager objectManager = ObjectManager.getObjectManager();
+    private GameObject weapon = objectManager.getObject("Broken Sword");
     @Override
     void beginTurn(){
         // Need to Add Functionality

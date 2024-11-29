@@ -1,11 +1,12 @@
 package Control.Monsters;
 
-import Control.Objects.Object;
-import Control.Objects.ObjectType;
+import Control.Objects.GameObject;
+import Control.Objects.ObjectManager;
 
 public class Monster_FinalBoss extends MonsterCombatTemplate{
     private MonsterStats monsterStats = new MonsterStats(MonsterType.ChainedPhoenix, 5, "The Chained Deity");
-    private Object weapon = new Object(ObjectType.Weapon, 3, true);
+    private ObjectManager objectManager = ObjectManager.getObjectManager();
+    private GameObject weapon = objectManager.getObject("Phoenix Talons");
     @Override
     void beginTurn(){
         // Need to Add Functionality

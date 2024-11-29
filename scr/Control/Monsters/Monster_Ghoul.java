@@ -1,11 +1,13 @@
 package Control.Monsters;
 
-import Control.Objects.Object;
-import Control.Objects.ObjectType;
+import Control.Objects.GameObject;
+import Control.Objects.ObjectManager;
+
 
 public class Monster_Ghoul extends MonsterCombatTemplate {
     private MonsterStats monsterStats = new MonsterStats(MonsterType.Ghoul, 3, "Ghoul");
-    private Object weapon = new Object(ObjectType.Weapon, 1, false);
+    private ObjectManager objectManager = ObjectManager.getObjectManager();
+    private GameObject weapon = objectManager.getObject("Ghoul Claws");
     @Override
     void beginTurn(){
         // Need to Add Functionality
