@@ -1,6 +1,6 @@
 package Control.Objects;
 
-public class Object {
+public class GameObject {
     private ObjectType objectType;
     // Could be damage or block
     private int objectStat;
@@ -18,7 +18,7 @@ public class Object {
         return glowing;
     }
     // Constructor
-    public Object(ObjectType objectType, int objectStat, boolean glowing) {
+    public GameObject(ObjectType objectType, int objectStat, boolean glowing) {
         this.objectType = objectType;
         this.objectStat = objectStat;
         this.glowing = glowing;

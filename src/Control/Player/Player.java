@@ -10,6 +10,7 @@ public class Player implements GameNotifier {
     private int health;
     private int score;
     private List<Observer> observers;
+    private Player playerInstance = new Player(3);
 
     public Player(int health) {
         this.health = health;
@@ -57,4 +58,6 @@ public class Player implements GameNotifier {
     public int getScore() {
         return score;
     }
+
+    public Player getPlayerInstance() {return playerInstance;}
 }

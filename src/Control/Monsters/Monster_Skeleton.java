@@ -4,10 +4,10 @@ import Control.Objects.GameObject;
 import Control.Objects.ObjectManager;
 
 
-public class Monster_Ghoul extends MonsterCombatTemplate {
-    private MonsterStats monsterStats = new MonsterStats(MonsterType.Ghoul, 3, "Ghoul");
+public class Monster_Skeleton extends MonsterCombatTemplate {
+    private MonsterStats monsterStats = new MonsterStats(MonsterType.Skeleton, 1, "Skeleton");
     private ObjectManager objectManager = ObjectManager.getObjectManager();
-    private GameObject weapon = objectManager.getObject("Ghoul Claws");
+    private GameObject weapon = objectManager.getObject("Broken Sword");
     @Override
     void beginTurn(){
         // Need to Add Functionality

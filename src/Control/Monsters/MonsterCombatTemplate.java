@@ -1,10 +1,10 @@
 package Control.Monsters;
 
-import Control.Objects.Object;
+import Control.Objects.GameObject;
 
 public abstract class MonsterCombatTemplate {
     private MonsterStats monsterStats;
-    private Object weapon;
+    private GameObject weapon;
     public final void runTurn (){
         beginTurn();
         takeAction();
@@ -14,7 +14,7 @@ public abstract class MonsterCombatTemplate {
     abstract void beginTurn();
     abstract void takeAction();
     abstract void endTurn();
-    public void equipWeapon(Object object){
-        weapon = object;
+    public void equipWeapon(GameObject gameObject){
+        weapon = gameObject;
     }
 }
