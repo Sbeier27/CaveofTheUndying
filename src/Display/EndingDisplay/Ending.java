@@ -1,6 +1,7 @@
 package Display.EndingDisplay;
 
-import Control.Endings.EndingHandler;
+import Control.Strings.Endings.EndingHandler;
+import Display.StartScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,12 +16,14 @@ public class Ending {
     private JLabel startText = new JLabel("<html></html>");
     private JTextField startButton = new JTextField(20);
     private JButton inputButton = new JButton("Enter");
+    JPanel panel = new JPanel(new GridBagLayout());
+    JFrame masterFrame;
 
     public void initiateEnding(JFrame gameFrame, int endingNumber) {
+        masterFrame = gameFrame;
         EndingHandler endingHandler = EndingHandler.getEndingHandler();
         String fullText = endingHandler.getEnding(endingNumber).replace("\n", "<br>");
 
-        JPanel panel = new JPanel(new GridBagLayout());
         panel.setBackground(new Color(0, 0, 0)); // Set the background color to black
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -72,6 +75,20 @@ public class Ending {
     }
 
     private void checkString(){
-        // Will implement Later
+        if (startButton.getText().equalsIgnoreCase("Restart") || startButton.getText().equalsIgnoreCase("Try Again") || startButton.getText().equalsIgnoreCase("Return To The Cave") || startButton.getText().equalsIgnoreCase("The World Has Ended")){
+            restartGame();
+        } else if (startButton.getText().equalsIgnoreCase("End")) {
+            endGame();
+        }
+    }
+    private void restartGame(){
+        panel.setVisible(false);
+        StartScreen startScreen = StartScreen.getStartScreen();
+        startScreen.initiateStartScreen();
+        masterFrame.revalidate();
+        masterFrame.repaint();
+    }
+    private void endGame(){
+        masterFrame.setVisible(false);
     }
 }

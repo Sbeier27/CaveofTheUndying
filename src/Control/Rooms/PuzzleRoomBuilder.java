@@ -9,14 +9,27 @@ public class PuzzleRoomBuilder implements RoomBuilder{
     private RoomBuilder western;
     private RoomBuilder northern;
     private RoomBuilder southern;
+    private String puzzle;
+    private String answer;
+    private boolean solved = false;
 
     public PuzzleRoomBuilder(){
         this.room = new Room();
     }
+    public void setRoomVariables(String description, RoomBuilder eastern, RoomBuilder western, RoomBuilder northern, RoomBuilder southern, String answer, String puzzle, Room previousRoom){
+        this.description = description;
+        this.eastern = eastern;
+        this.western = western;
+        this.northern = northern;
+        this.southern = southern;
+        this.answer = answer;
+        this.puzzle = puzzle;
+        room.setPrevRoom(previousRoom);
+    }
 
     //the basic interaction system
     @Override
-    public String interact(){
+    public String interact(String interaction){
         room.setCommand(interaction);
         if(interaction.equalsIgnoreCase("Interact")){
             return room.description;
@@ -51,5 +64,9 @@ public class PuzzleRoomBuilder implements RoomBuilder{
     @Override
     public RoomBuilder getRoom() {
         return null;
+    }
+    @Override
+    public String getDescription() {
+        return description;
     }
 }

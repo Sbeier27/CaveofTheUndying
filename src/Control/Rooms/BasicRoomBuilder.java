@@ -16,10 +16,20 @@ public class BasicRoomBuilder implements RoomBuilder{
     public BasicRoomBuilder(){
         this.room = new Room();
     }
+    public void setRoomVariables(String description, RoomBuilder eastern, RoomBuilder western, RoomBuilder northern, RoomBuilder southern, String answer, String puzzle, Room previousRoom){
+        this.description = description;
+        this.eastern = eastern;
+        this.western = western;
+        this.northern = northern;
+        this.southern = southern;
+        this.answer = answer;
+        this.puzzle = puzzle;
+        room.setPrevRoom(previousRoom);
+    }
 
     //the basic interaction system
     @Override
-    public String interact(){
+    public String interact(String interaction){
         room.setCommand(interaction);
         if(interaction.equalsIgnoreCase("Interact")){
             return room.description;
@@ -34,11 +44,11 @@ public class BasicRoomBuilder implements RoomBuilder{
             solved = true;
             return "you've solved the puzzle...somehow...continue";
         }
-        return null;
+        return "Nothing Happened";
     }
 
     /* These commands are supposed to load the room to the proper direction if there is one
-    * and if there isn't a room in that direction display an appropriate message */
+     and if there isn't a room in that direction display an appropriate message */
 
     @Override
     public void east(){
@@ -60,5 +70,9 @@ public class BasicRoomBuilder implements RoomBuilder{
     @Override
     public RoomBuilder getRoom() {
         return null;
+    }
+    @Override
+    public String getDescription() {
+        return description;
     }
 }

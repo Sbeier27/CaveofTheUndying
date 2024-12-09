@@ -1,6 +1,10 @@
 package Display;
 
+import Control.Rooms.BasicRoomBuilder;
+import Control.Rooms.PuzzleRoomBuilder;
+import Control.Rooms.RoomBuilder;
 import Display.EndingDisplay.Ending;
+import Display.RoomDisplay.RoomDisplay;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +27,11 @@ public class StartScreen {
 
     public void enterTheCave(){ // Activates if the player chooses to enter
         panel.setVisible(false);
-        // Some function from the rooms that requires the frame
+        RoomBuilder roomBuilderN = new PuzzleRoomBuilder();
+        RoomBuilder roomBuilderS = new BasicRoomBuilder();
+        RoomDisplay roomDisplay = new RoomDisplay();
+        roomDisplay.setRoom(0, null, null, roomBuilderN, roomBuilderS, 0, "Sit in the Light", null, null);
+        roomDisplay.initializeDisplay(frame);
         frame.revalidate();
         frame.repaint();
     }
