@@ -42,19 +42,19 @@ public class BasicRoomBuilder implements RoomBuilder{
 
     @Override
     public void east(){
-        eastern;
+        //eastern;
     }
     @Override
     public void west(){
-        western;
+        //western;
     }
     @Override
     public void north(){
-        northern;
+        //northern;
     }
     @Override
     public void south(){
-        southern;
+        //southern;
     }
 
     @Override

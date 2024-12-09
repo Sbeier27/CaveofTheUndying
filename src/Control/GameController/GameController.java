@@ -1,5 +1,6 @@
 package Control.GameController;
 
+import Control.Endings.EndingHandler;
 import Control.Player.Player;
 import Display.StartScreen;
 
@@ -12,6 +13,8 @@ public class GameController {
 
 
     public void Play(){ // This will control our game loop
+        EndingHandler endingHandler = EndingHandler.getEndingHandler();
+                endingHandler.initializeEndingList();
         StartScreen startScreen = StartScreen.getStartScreen();
         startScreen.initiateStartScreen();
     }

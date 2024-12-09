@@ -3,7 +3,7 @@ package Control.Rooms;
 public class Room {
 
     private String command;
-    private String description;
+    String description;
     private Room nextRoom;
     private Room prevRoom;
 
@@ -14,6 +14,8 @@ public class Room {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String description() {return description;}
 
     public void setNextRoom(Room nextRoom) {
         this.nextRoom = nextRoom;

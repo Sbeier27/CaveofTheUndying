@@ -24,6 +24,7 @@ public class PuzzleRoomBuilder implements RoomBuilder{
             return "there is nothing to attack...you waste your strength";
         }else if(interaction.equalsIgnoreCase("Give up")) {
             return "you lay down to die, having lost faith in yourself";
+        }
         return null;
     }
 
@@ -32,19 +33,19 @@ public class PuzzleRoomBuilder implements RoomBuilder{
 
     @Override
     public void east(){
-        eastern;
+        //eastern;
     }
     @Override
     public void west(){
-        western;
+        //western;
     }
     @Override
     public void north(){
-        northern;
+        //northern;
     }
     @Override
     public void south(){
-        southern;
+        //southern;
     }
 
     @Override

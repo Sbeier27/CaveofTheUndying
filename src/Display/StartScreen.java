@@ -1,5 +1,7 @@
 package Display;
 
+import Display.EndingDisplay.Ending;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,12 +21,20 @@ public class StartScreen {
     private int charIndex = 0;
     JPanel panel = new JPanel(new GridBagLayout());
 
-    public void enterTheCave(){
+    public void enterTheCave(){ // Activates if the player chooses to enter
         panel.setVisible(false);
         // Some function from the rooms that requires the frame
         frame.revalidate();
         frame.repaint();
     }
+    public void leaveTheCave(){ // Activates if the player chooses to leave the cave
+        panel.setVisible(false);
+        Ending ending = Ending.getEnding();
+        ending.initiateEnding(frame, 0);
+        frame.revalidate();
+        frame.repaint();
+    }
+
     public void initiateStartScreen(){
         frame.setSize(1300,1500);
         frame.setTitle("Cave of the Undying");
@@ -33,6 +43,7 @@ public class StartScreen {
         frame.setVisible(true);
         frame.revalidate();
         frame.repaint();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
 
@@ -68,15 +79,11 @@ public class StartScreen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Uncomment the following code to enable the functionality
-
-                if (startButton.getText().equals("Enter The Cave")) {
-                    enterTheCave();
-                }
-
+                checkString();
             }
         });
         // Typing effect
-        Timer timer = new Timer(50, new ActionListener() {
+        Timer timer = new Timer(80, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (charIndex < fullText.length()) {
@@ -89,5 +96,12 @@ public class StartScreen {
         });
         timer.setInitialDelay(0);
         timer.start();
+    }
+    private void checkString(){ //Handles The strings
+        if (startButton.getText().equalsIgnoreCase("Enter The Cave") || startButton.getText().equals("Enter The Cavern") || startButton.getText().equals("Walk In")){
+            enterTheCave();
+        } else if (startButton.getText().equalsIgnoreCase("Turn Around") || startButton.getText().equals("Leave") || startButton.getText().equals("Walk Away")) {
+            leaveTheCave();
+        }
     }
 }
