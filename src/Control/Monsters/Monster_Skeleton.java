@@ -2,25 +2,30 @@ package Control.Monsters;
 
 import Control.Objects.GameObject;
 import Control.Objects.ObjectManager;
-
+import Control.Player.Player;
 
 public class Monster_Skeleton extends MonsterCombatTemplate {
-    private MonsterStats monsterStats = new MonsterStats(MonsterType.Skeleton, 1, "Skeleton");
     private ObjectManager objectManager = ObjectManager.getObjectManager();
     private GameObject weapon = objectManager.getObject("Broken Sword");
-    @Override
-    void beginTurn(){
-        // Need to Add Functionality
+
+    public Monster_Skeleton() {
+        this.monsterStats = new MonsterStats(MonsterType.Skeleton, 1, "Skeleton");
+        equipWeapon(weapon);
     }
 
     @Override
-    void takeAction() {
-        // Need to add Functionality
+    void beginTurn() {
+        System.out.println("Skeleton begins its turn.");
+    }
+
+    @Override
+    void takeAction(Player player) {
+        // Monster deals damage to the player during its action
+        player.takeDamage(weapon.getObjectStat());
     }
 
     @Override
     void endTurn() {
-        // Need to add Functionality
+        System.out.println("Skeleton's turn ends.");
     }
-
 }

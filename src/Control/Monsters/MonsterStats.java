@@ -11,22 +11,36 @@ public class MonsterStats {
     //
     private Image monsterSprite;
 
-    //Functions
-    public void takeDamage(int Damage){
-        this.monsterHealth = monsterHealth - Damage;
-        if(monsterHealth <= 0){
+    // Functions
+    public void takeDamage(int damage) {
+        this.monsterHealth -= damage;
+        if (monsterHealth <= 0) {
             death();
         }
     }
-    public void death(){
-        // Need to add the functionality
+
+    public void death() {
+        System.out.println(monsterName + " has been defeated!");
+        // Add functionality if needed
     }
 
     // Constructor
-
     public MonsterStats(MonsterType monsterType, int monsterHealth, String monsterName) {
         this.monsterType = monsterType;
         this.monsterHealth = monsterHealth;
         this.monsterName = monsterName;
+    }
+
+    // Getters
+    public MonsterType getMonsterType() {
+        return monsterType;
+    }
+
+    public int getMonsterHealth() {
+        return monsterHealth;
+    }
+
+    public String getMonsterName() {
+        return monsterName;
     }
 }
