@@ -14,7 +14,7 @@ public class Monster_Skeleton extends MonsterCombatTemplate {
     }
 
     @Override
-    void beginTurn(Player player) {
+    void beginTurn() {
         System.out.println("Skeleton begins its turn.");
     }
 
