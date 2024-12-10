@@ -2,24 +2,30 @@ package Control.Monsters;
 
 import Control.Objects.GameObject;
 import Control.Objects.ObjectManager;
+import Control.Player.Player;
 
-public class Monster_FinalBoss extends MonsterCombatTemplate{
-    private MonsterStats monsterStats = new MonsterStats(MonsterType.ChainedPhoenix, 5, "The Chained Deity");
+public class Monster_FinalBoss extends MonsterCombatTemplate {
     private ObjectManager objectManager = ObjectManager.getObjectManager();
     private GameObject weapon = objectManager.getObject("Phoenix Talons");
-    @Override
-    void beginTurn(){
-        // Need to Add Functionality
+
+    public Monster_FinalBoss() {
+        this.monsterStats = new MonsterStats(MonsterType.ChainedPhoenix, 5, "The Chained Deity");
+        equipWeapon(weapon);
     }
 
     @Override
-    void takeAction() {
-        // Need to add Functionality
+    void beginTurn(Player player) {
+        System.out.println("The Chained Deity begins its turn.");
+    }
+
+    @Override
+    void takeAction(Player player) {
+        // Monster deals damage to the player during its action
+        player.takeDamage(weapon.getObjectStat());
     }
 
     @Override
     void endTurn() {
-        // Need to add Functionality
+        System.out.println("The Chained Deity's turn ends.");
     }
-
 }
