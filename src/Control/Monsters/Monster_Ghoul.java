@@ -14,7 +14,7 @@ public class Monster_Ghoul extends MonsterCombatTemplate {
     }
 
     @Override
-    void beginTurn(Player player) {
+    void beginTurn() {
         System.out.println("Ghoul begins its turn.");
     }
 
