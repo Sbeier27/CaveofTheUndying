@@ -2,6 +2,8 @@ package Control.Player;
 
 import Control.Observer.Observer;
 import Control.Observer.GameNotifier;
+import Control.Objects.GameObject;
+import Control.Monsters.MonsterCombatTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +13,7 @@ public class Player implements GameNotifier {
     private int score;
     private List<Observer> observers;
     private static Player playerInstance = new Player(3);
+    private GameObject equippedWeapon;
 
     public Player(int health) {
         this.health = health;
@@ -41,8 +44,9 @@ public class Player implements GameNotifier {
         notifyObservers();
     }
 
-    public void dealDamageToMonster(String monsterType) {
-        // TO BE IMPLEMENTED
+    public void dealDamageToMonster(MonsterCombatTemplate monster) {
+        int damage = equippedWeapon != null ? equippedWeapon.getObjectStat() : 1; // Default damage is 1 if no weapon is equipped
+        monster.getMonsterStats().takeDamage(damage);
         notifyObservers();
     }
 
@@ -59,5 +63,15 @@ public class Player implements GameNotifier {
         return score;
     }
 
-    public static Player getPlayerInstance() {return playerInstance;}
+    public static Player getPlayerInstance() {
+        return playerInstance;
+    }
+
+    public void equipWeapon(GameObject weapon) {
+        this.equippedWeapon = weapon;
+    }
+
+    public GameObject getEquippedWeapon() {
+        return equippedWeapon;
+    }
 }
