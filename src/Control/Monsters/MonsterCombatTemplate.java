@@ -13,7 +13,7 @@ public abstract class MonsterCombatTemplate {
         endTurn();
     }
 
-    abstract void beginTurn(Player player);
+    abstract void beginTurn();
     abstract void takeAction(Player player);
     abstract void endTurn();
 
