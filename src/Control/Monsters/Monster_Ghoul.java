@@ -2,25 +2,30 @@ package Control.Monsters;
 
 import Control.Objects.GameObject;
 import Control.Objects.ObjectManager;
-
+import Control.Player.Player;
 
 public class Monster_Ghoul extends MonsterCombatTemplate {
-    private MonsterStats monsterStats = new MonsterStats(MonsterType.Ghoul, 3, "Ghoul");
     private ObjectManager objectManager = ObjectManager.getObjectManager();
     private GameObject weapon = objectManager.getObject("Ghoul Claws");
-    @Override
-    void beginTurn(){
-        // Need to Add Functionality
+
+    public Monster_Ghoul() {
+        this.monsterStats = new MonsterStats(MonsterType.Ghoul, 3, "Ghoul");
+        equipWeapon(weapon);
     }
 
     @Override
-    void takeAction() {
-        // Need to add Functionality
+    void beginTurn(Player player) {
+        System.out.println("Ghoul begins its turn.");
+    }
+
+    @Override
+    void takeAction(Player player) {
+        // Monster deals damage to the player during its action
+        player.takeDamage(weapon.getObjectStat());
     }
 
     @Override
     void endTurn() {
-        // Need to add Functionality
+        System.out.println("Ghoul's turn ends.");
     }
-
 }
