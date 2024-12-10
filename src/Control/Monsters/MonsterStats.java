@@ -20,6 +20,7 @@ public class MonsterStats {
     }
 
     public void death() {
+        System.out.println(monsterName + " has been defeated!");
         // Add functionality if needed
     }
 
