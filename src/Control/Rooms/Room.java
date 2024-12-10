@@ -24,4 +24,8 @@ public class Room {
     public void setPrevRoom(Room prevRoom) {
         this.prevRoom = prevRoom;
     }
+
+    public Room getPrevRoom() {
+        return prevRoom;
+    }
 }

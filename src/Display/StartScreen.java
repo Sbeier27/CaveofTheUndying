@@ -27,10 +27,8 @@ public class StartScreen {
 
     public void enterTheCave(){ // Activates if the player chooses to enter
         panel.setVisible(false);
-        RoomBuilder roomBuilderN = new PuzzleRoomBuilder();
-        RoomBuilder roomBuilderS = new BasicRoomBuilder();
         RoomDisplay roomDisplay = new RoomDisplay();
-        roomDisplay.setRoom(0, null, null, roomBuilderN, roomBuilderS, 0, "Sit in the Light", null, null);
+        roomDisplay.setRoomWithInt(0);
         roomDisplay.initializeDisplay(frame);
         frame.revalidate();
         frame.repaint();
@@ -106,9 +104,9 @@ public class StartScreen {
         timer.start();
     }
     private void checkString(){ //Handles The strings
-        if (startButton.getText().equalsIgnoreCase("Enter The Cave") || startButton.getText().equals("Enter The Cavern") || startButton.getText().equals("Walk In")){
+        if (startButton.getText().equalsIgnoreCase("Enter The Cave") || startButton.getText().equalsIgnoreCase("Enter The Cavern") || startButton.getText().equalsIgnoreCase("Walk In") || startButton.getText().equalsIgnoreCase("Enter")){
             enterTheCave();
-        } else if (startButton.getText().equalsIgnoreCase("Turn Around") || startButton.getText().equals("Leave") || startButton.getText().equals("Walk Away")) {
+        } else if (startButton.getText().equalsIgnoreCase("Turn Around") || startButton.getText().equalsIgnoreCase("Leave") || startButton.getText().equalsIgnoreCase("Walk Away")) {
             leaveTheCave();
         }
     }

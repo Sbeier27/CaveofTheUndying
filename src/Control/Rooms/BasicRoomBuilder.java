@@ -5,6 +5,7 @@ public class BasicRoomBuilder implements RoomBuilder{
     private Room room;
     private String interaction;
     private String description;
+    private int roomNumber;
     private RoomBuilder eastern;
     private RoomBuilder western;
     private RoomBuilder northern;
@@ -42,7 +43,10 @@ public class BasicRoomBuilder implements RoomBuilder{
             return puzzle;
         } else if(interaction.equalsIgnoreCase(answer)){
             solved = true;
-            return "you've solved the puzzle...somehow...continue";
+            if (answer.equalsIgnoreCase("Attack")){
+                return "Admin.Fight";
+            }
+            else {return "you've solved the puzzle...somehow...continue";}
         }
         return "Nothing Happened";
     }
@@ -51,20 +55,20 @@ public class BasicRoomBuilder implements RoomBuilder{
      and if there isn't a room in that direction display an appropriate message */
 
     @Override
-    public void east(){
-        //eastern;
+    public RoomBuilder east(){
+        return eastern;
     }
     @Override
-    public void west(){
-        //western;
+    public RoomBuilder west(){
+        return western;
     }
     @Override
-    public void north(){
-        //northern;
+    public RoomBuilder north(){
+        return northern;
     }
     @Override
-    public void south(){
-        //southern;
+    public RoomBuilder south(){
+        return southern;
     }
 
     @Override
@@ -74,5 +78,13 @@ public class BasicRoomBuilder implements RoomBuilder{
     @Override
     public String getDescription() {
         return description;
+    }
+    @Override
+    public int getRoomNumber(){
+        return roomNumber;
+    }
+    @Override
+    public void setRoomNumber(int roomNumber){
+        this.roomNumber = roomNumber;
     }
 }

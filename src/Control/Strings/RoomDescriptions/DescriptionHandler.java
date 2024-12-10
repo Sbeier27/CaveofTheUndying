@@ -16,5 +16,7 @@ public class DescriptionHandler {
     }
     public void initializeDescriptionList(){
         descriptionList.add("You enter the cavern\nAs you walk deeper the floor gives way\nYou land on the ground in a much deeper area\nThe light from the entrance reaches only a faint circle on the ground where you landed");
-    }
+        descriptionList.add("As you tredge along you find yourself in an intersection\nThe rought to the south is shrouded in darkness\nThe rought to the north is lined in glowing vines");
+
+        }
 }

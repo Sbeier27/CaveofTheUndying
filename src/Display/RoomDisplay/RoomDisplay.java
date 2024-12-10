@@ -4,7 +4,7 @@ import Control.Rooms.BasicRoomBuilder;
 import Control.Rooms.PuzzleRoomBuilder;
 import Control.Rooms.Room;
 import Control.Rooms.RoomBuilder;
-import Control.Strings.RoomDescriptions.DescriptionHandler;
+import Control.Strings.Rooms.RoomHandler;
 import Display.EndingDisplay.Ending;
 
 import javax.swing.*;
@@ -15,19 +15,21 @@ import java.awt.event.ActionListener;
 public class RoomDisplay {
     RoomBuilder roomBuilder;
     Room room;
-    public void setRoom(int roomType, RoomBuilder eastRoom, RoomBuilder westRoom, RoomBuilder northRoom, RoomBuilder southRoom, int roomDescription, String answer, String puzzle, Room previousRoom){
-        DescriptionHandler descriptionHandler = DescriptionHandler.getDescriptionHandler();
-        if (roomType == 0){
-            roomBuilder = new BasicRoomBuilder();
-        } else if (roomType == 1) {
-            roomBuilder = new PuzzleRoomBuilder();
-        }
-        roomBuilder.setRoomVariables(descriptionHandler.getDescription(roomDescription), eastRoom, westRoom, northRoom, southRoom, answer, puzzle, previousRoom);
+    public void setRoomWithInt(int roomNumber){
+        RoomHandler roomHandler = RoomHandler.getInstance();
+        roomBuilder = roomHandler.getRoom(roomNumber);
+    }
+    public void setRoomWithRoom(RoomBuilder room){
+        roomBuilder = room;
     }
     private JButton northButton = new JButton("N");
+        JPanel northPanel = new JPanel();
     private JButton southButton = new JButton("S");
+        JPanel southPanel = new JPanel();
     private JButton eastButton = new JButton("E");
+        JPanel eastPanel = new JPanel();
     private JButton westButton = new JButton("W");
+        JPanel westPanel = new JPanel();
     int charIndex = 0;
     private JLabel startText = new JLabel("<html></html>");
     private JTextField textEntry = new JTextField(20);
@@ -83,6 +85,7 @@ public class RoomDisplay {
             // Logic for combat encounter
         }
         else if (roomBuilder.interact(textEntry.getText()).equals("you lay down to die, having lost faith in yourself")) {
+            addText(roomBuilder.interact(textEntry.getText()));
             death(1);
     }
         else if (roomBuilder.interact(textEntry.getText()) != null) {
@@ -110,15 +113,18 @@ public class RoomDisplay {
 
     }
     private void addDirectionalButtons(JFrame frame) {
-        frame.setLayout(new BorderLayout());
-
         northButton.setOpaque(false);
         northButton.setBackground(new Color(0, 0, 0, 0));
         northButton.setForeground(Color.WHITE);
         northButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Logic for moving north
+                if(roomBuilder.north() == null){
+                    addText("You take a break and stare at a wall\nThe wall is quite boring");
+                }
+                else {
+                    switchRooms(roomBuilder.north());
+                }
             }
         });
 
@@ -128,7 +134,12 @@ public class RoomDisplay {
         southButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Logic for moving south
+                if(roomBuilder.south() == null){
+                    addText("You take a break and stare at a wall\nThe wall is quite boring");
+                }
+                else {
+                    switchRooms(roomBuilder.south());
+                }
             }
         });
 
@@ -138,7 +149,12 @@ public class RoomDisplay {
         eastButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Logic for moving east
+                if(roomBuilder.east() == null){
+                    addText("You take a break and stare at a wall\nThe wall is quite boring");
+                }
+                else{
+                    switchRooms(roomBuilder.east());
+                }
             }
         });
 
@@ -148,24 +164,25 @@ public class RoomDisplay {
         westButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Logic for moving west
+                if(roomBuilder.west() == null){
+                    addText("You take a break and stare at a wall\nThe wall is quite boring");
+                }
+                else{
+                    switchRooms(roomBuilder.west());
+                }
             }
         });
 
-        JPanel northPanel = new JPanel();
-        northPanel.setOpaque(false);
+        northPanel.setBackground(new Color(0, 0, 0)); // Set the background color to black
         northPanel.add(northButton);
 
-        JPanel southPanel = new JPanel();
-        southPanel.setOpaque(false);
+        southPanel.setBackground(new Color(0, 0, 0)); // Set the background color to black
         southPanel.add(southButton);
 
-        JPanel eastPanel = new JPanel();
-        eastPanel.setOpaque(false);
+        eastPanel.setBackground(new Color(0, 0, 0)); // Set the background color to black
         eastPanel.add(eastButton);
 
-        JPanel westPanel = new JPanel();
-        westPanel.setOpaque(false);
+        westPanel.setBackground(new Color(0, 0, 0)); // Set the background color to black
         westPanel.add(westButton);
 
         frame.add(northPanel, BorderLayout.NORTH);
@@ -173,10 +190,30 @@ public class RoomDisplay {
         frame.add(eastPanel, BorderLayout.EAST);
         frame.add(westPanel, BorderLayout.WEST);
     }
+    private void removeDirectionalButtons(JFrame frame) {
+        frame.remove(northPanel);
+        frame.remove(southPanel);
+        frame.remove(eastPanel);
+        frame.remove(westPanel);
+        frame.revalidate();
+        frame.repaint();
+    }
     private void death(int endingNumber){
         panel.setVisible(false);
+        removeDirectionalButtons(masterFrame);
         Ending ending = Ending.getEnding();
         ending.initiateEnding(masterFrame, endingNumber);
+
+        masterFrame.revalidate();
+        masterFrame.repaint();
+    }
+    private void switchRooms(RoomBuilder newRoom){
+        RoomDisplay roomDisplay = new RoomDisplay();
+            roomDisplay.setRoomWithRoom(newRoom);
+        removeDirectionalButtons(masterFrame);
+        panel.setVisible(false);
+
+        roomDisplay.initializeDisplay(masterFrame);
         masterFrame.revalidate();
         masterFrame.repaint();
     }
