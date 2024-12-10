@@ -14,7 +14,7 @@ public class Monster_FinalBoss extends MonsterCombatTemplate {
     }
 
     @Override
-    void beginTurn(Player player) {
+    void beginTurn() {
         System.out.println("The Chained Deity begins its turn.");
     }
 
