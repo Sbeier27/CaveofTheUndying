@@ -8,7 +8,7 @@ public abstract class MonsterCombatTemplate {
     protected GameObject weapon;
 
     public final void runTurn(Player player) {
-        beginTurn(player);
+        beginTurn();
         takeAction(player);
         endTurn();
     }

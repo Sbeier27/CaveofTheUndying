@@ -36,5 +36,15 @@ public class RoomHandler {
                 basicRoom1.setRoomVariables(descriptionHandler.getDescription(1), enemyRoom2, puzzleRoom0, null, null, "Light Your torch", null, null);
                 enemyRoom2.setRoomVariables(descriptionHandler.getDescription(1), puzzleRoom1, basicRoom1, null, null, "Attack", null, null);
                 puzzleRoom1.setRoomVariables(descriptionHandler.getDescription(1), null, enemyRoom2, null, enemyRoom3, "Placeholder", "Placeholder", null);
+        roomBuilderList.add(startRoom);
+        roomBuilderList.add(basicRoom0);
+        roomBuilderList.add(enemyRoom0);
+        roomBuilderList.add(itemRoom0);
+        roomBuilderList.add(enemyRoom1);
+        roomBuilderList.add(puzzleRoom0);
+        roomBuilderList.add(basicRoom1);
+        roomBuilderList.add(enemyRoom2);
+        roomBuilderList.add(puzzleRoom1);
+        roomBuilderList.add(enemyRoom3);
     }
 }

@@ -15,11 +15,12 @@ import java.awt.event.ActionListener;
 public class RoomDisplay {
     RoomBuilder roomBuilder;
     Room room;
-    public void setRoomWithInt(int roomNumber){
+    public void setRoomWithInt(int roomNumber) {
         RoomHandler roomHandler = RoomHandler.getInstance();
         roomBuilder = roomHandler.getRoom(roomNumber);
     }
-    public void setRoomWithRoom(RoomBuilder room){
+
+    public void setRoomWithRoom(RoomBuilder room) {
         roomBuilder = room;
     }
     private JButton northButton = new JButton("N");
